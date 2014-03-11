@@ -1,4 +1,4 @@
-FROM ubuntu:12.04
+FROM centos:latest
 MAINTAINER OpDemand <info@opdemand.com>
 ENV PORT 8000
 ADD . /app
