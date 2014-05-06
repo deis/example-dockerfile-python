@@ -6,7 +6,7 @@ applications to Deis.
 
 ## Usage
 
-    $ deis create --formation=dev
+    $ deis create
     Creating application... done, created owlish-huntress
     Git remote deis added
     $ git push deis master
