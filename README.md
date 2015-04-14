@@ -21,21 +21,18 @@ Uploading context 5.632 kB
 Uploading context
 Step 0 : FROM centos:latest
  ---> 0b443ba03958
-Step 1 : MAINTAINER OpDemand <info@opdemand.com>
- ---> Using cache
- ---> 84d1fc9d7fdb
-Step 2 : ADD . /app
+Step 1 : ADD . /app
  ---> 8a2ae43bfb50
 Removing intermediate container 53693bf203de
-Step 3 : WORKDIR /app
+Step 2 : WORKDIR /app
  ---> Running in a7740ec48b5d
  ---> cd97e9d93eca
 Removing intermediate container a7740ec48b5d
-Step 4 : CMD python -m SimpleHTTPServer 5000
+Step 3 : CMD python -m SimpleHTTPServer 5000
  ---> Running in 5423a06c280d
  ---> ad92d46a2f46
 Removing intermediate container 5423a06c280d
-Step 5 : EXPOSE 5000
+Step 4 : EXPOSE 5000
  ---> Running in f85ca4c16fbc
  ---> 38d5c240ce7f
 Removing intermediate container f85ca4c16fbc
