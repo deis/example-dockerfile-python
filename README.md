@@ -1,39 +1,33 @@
-Example Dockerfile App
-======================
+Example Dockerfile Python App
+=============================
 
 This sample application shows how you can deploy Dockerfile-based
-applications to Deis.
+Python applications to Deis Workflow.
 
 ## Usage
 
-```
+```console
+$ git clone https://github.com/deis/example-dockerfile-python
+$ cd example-dockerfile-python
 $ deis create
-Creating application... done, created verbal-inchworm
+Creating Application... done, created actual-gatepost
 Git remote deis added
+remote available at ssh://git@deis-builder.deis.rocks:2222/actual-gatepost.git
 $ git push deis master
-Counting objects: 50, done.
+Counting objects: 52, done.
 Delta compression using up to 4 threads.
-Compressing objects: 100% (48/48), done.
-Writing objects: 100% (50/50), 7.36 KiB | 0 bytes/s, done.
-Total 50 (delta 9), reused 0 (delta 0)
-
------> Building Docker image
-remote: Sending build context to Docker daemon 5.632 kB
-Step 0 : FROM gliderlabs/alpine:3.3
-3.3: Pulling from gliderlabs/alpine
-07ced8d5b985: Pulling fs layer
-07ced8d5b985: Verifying Checksum
-07ced8d5b985: Download complete
-07ced8d5b985: Pull complete
-Digest: sha256:060856502ad9930f542bc9a02bd88eb6a4de6caade0c25d277da5f3d506154f6
-Status: Downloaded newer image for gliderlabs/alpine:3.3
- ---> 07ced8d5b985
-Step 1 : RUN apk-install python
- ---> Running in 8c44d14a0bde
+Compressing objects: 100% (50/50), done.
+Writing objects: 100% (52/52), 8.39 KiB | 0 bytes/s, done.
+Total 52 (delta 11), reused 0 (delta 0)
+Starting build... but first, coffee!
+Step 1 : FROM gliderlabs/alpine:3.3
+---> d63a2009a70a
+Step 2 : RUN apk-install python
+---> Running in 1a8f3db3fe08
 fetch http://alpine.gliderlabs.com/alpine/v3.3/main/x86_64/APKINDEX.tar.gz
 fetch http://alpine.gliderlabs.com/alpine/v3.3/community/x86_64/APKINDEX.tar.gz
 (1/10) Installing libbz2 (1.0.6-r4)
-(2/10) Installing expat (2.1.0-r2)
+(2/10) Installing expat (2.1.1-r0)
 (3/10) Installing libffi (3.2.1-r2)
 (4/10) Installing gdbm (1.11-r1)
 (5/10) Installing ncurses-terminfo-base (6.0-r6)
@@ -44,40 +38,37 @@ fetch http://alpine.gliderlabs.com/alpine/v3.3/community/x86_64/APKINDEX.tar.gz
 (10/10) Installing python (2.7.11-r3)
 Executing busybox-1.24.1-r7.trigger
 OK: 51 MiB in 21 packages
- ---> 8f9e0eee7505
-Removing intermediate container 8c44d14a0bde
-Step 2 : ADD . /app
- ---> ae19429aadb8
-Removing intermediate container 227e08905dfa
-Step 3 : WORKDIR /app
- ---> Running in 305c96c876a7
- ---> 1959fe212c27
-Removing intermediate container 305c96c876a7
-Step 4 : CMD python -m SimpleHTTPServer 5000
- ---> Running in 5a7954e829e4
- ---> 0f399a8d817b
-Removing intermediate container 5a7954e829e4
-Step 5 : EXPOSE 5000
- ---> Running in 481b0c8d7b17
- ---> 1ec8e1f757ad
-Removing intermediate container 481b0c8d7b17
-Step 6 : ENV GIT_SHA 89bb2984050799209f1255dfba94ccd50c74d793
- ---> Running in bfc5d7bab91a
- ---> d5a97e8aa740
-Removing intermediate container bfc5d7bab91a
-Successfully built d5a97e8aa740
------> Pushing image to private registry
+---> faabac892e5a
+Removing intermediate container 1a8f3db3fe08
+Step 3 : ADD . /app
+---> ee020d4fe5b1
+Removing intermediate container 80d14a5f4ee7
+Step 4 : WORKDIR /app
+---> Running in c2b4bfe2ffdd
+---> 425e63270527
+Removing intermediate container c2b4bfe2ffdd
+Step 5 : CMD python -m SimpleHTTPServer 5000
+---> Running in 6ed1a1f518a9
+---> 0b5f37fc0221
+Removing intermediate container 6ed1a1f518a9
+Step 6 : EXPOSE 5000
+---> Running in 8afc7f69d965
+---> 94d4820f6ad8
+Removing intermediate container 8afc7f69d965
+Successfully built 94d4820f6ad8
+Pushing to registry
+Build complete.
+Launching App...
+Done, actual-gatepost:v2 deployed to Deis
 
------> Launching...
-       done, verbal-inchworm:v2 deployed to Deis
+Use 'deis open' to view this application in your browser
 
-       http://verbal-inchworm.local3.deisapp.com
+To learn more, use 'deis help' or visit https://deis.com/
 
-       To learn more, use `deis help` or visit http://deis.io
-
-To ssh://git@deis.local3.deisapp.com:2222/verbal-inchworm.git
+To ssh://git@deis-builder.deis.rocks:2222/actual-gatepost.git
  * [new branch]      master -> master
-$ curl -sSL http://verbal-inchworm.local3.deisapp.com
+
+$ curl http://actual-gatepost.deis.rocks
 <h1>Powered by Deis</h1>
 ```
 
